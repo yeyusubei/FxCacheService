@@ -49,16 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCache.cs" />
     <Compile Include="CacheKey.cs" />
+    <Compile Include="FxCar\CarCache.cs" />
+    <Compile Include="FxGoods\GoodsCache.cs" />
+    <Compile Include="FxHouse\HouseCache.cs" />
     <Compile Include="FxSite\GlobalCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /V "$(TargetDir)\FxCacheService.dll" "E:\Program Files\GitHubWorkspace\net\Fx.InformationPlatform\Fx.InformationPlatform\Fx.InformationPlatform.Site\packages\Fx\FxCacheService\FxCacheService.dll"
+    <PostBuildEvent>copy /V "$(TargetDir)\FxCacheService.dll" "E:\Program Files\GitHubWorkspace\net\InformationPlatform\Fx.InformationPlatform\Fx.InformationPlatform.Site\packages\Fx\FxCacheService\FxCacheService.dll"
 copy /V "$(TargetDir)\FxCacheService.dll" "E:\Program Files\GitHubWorkspace\net\FxUserCenter\FxUserCenter\FxUserCenter\packages\Fx\FxCacheService\FxCacheService.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
