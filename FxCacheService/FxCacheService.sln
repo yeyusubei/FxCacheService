@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FxCacheService", "FxCacheService\FxCacheService.csproj", "{221FFC22-2168-4599-A6D5-02C390B2307A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheTest", "CacheTest\CacheTest.csproj", "{149B9017-5E07-43FF-8BDB-7525AE70FEBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{149B9017-5E07-43FF-8BDB-7525AE70FEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149B9017-5E07-43FF-8BDB-7525AE70FEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149B9017-5E07-43FF-8BDB-7525AE70FEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149B9017-5E07-43FF-8BDB-7525AE70FEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{221FFC22-2168-4599-A6D5-02C390B2307A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{221FFC22-2168-4599-A6D5-02C390B2307A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{221FFC22-2168-4599-A6D5-02C390B2307A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{221FFC22-2168-4599-A6D5-02C390B2307A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
