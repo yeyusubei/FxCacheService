@@ -72,11 +72,17 @@ namespace FxCacheService
             /// </summary>
             public static string GOODS_HOME_TRANSFER_LATEST = "FXCACHE_GOODS_HOME_TRANSFER_LATEST";
 
+            /// <summary>
+            /// 首页最新发布的置顶
+            /// </summary>
+            public static string GOODS_HOME_TOP_SHOW_LATEST = "FXCACHE_GOODS_HOME_TOP_SHOW_LATEST";
         }
 
         public static class GoodsExtendKey
         {
             public static DateTime GOODS_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+
+            public static DateTime GOODS_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
         }
 
 
@@ -86,11 +92,18 @@ namespace FxCacheService
             /// 首页最新发布汽车
             /// </summary>
             public static string CAR_HOME_TRANSFER_LATEST = "FXCACHE_CAR_HOME_TRANSFER_LATEST";
+
+            /// <summary>
+            /// 首页最新发布的置顶
+            /// </summary>
+            public static string CAR_HOME_TOP_SHOW_LATEST = "FXCACHE_CAR_HOME_TOP_SHOW_LATEST";
         }
 
         public static class CarExtendKey
         {
             public static DateTime CAR_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+
+            public static DateTime CAR_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
         }
 
         public static class HouseKey
@@ -99,11 +112,18 @@ namespace FxCacheService
             /// 首页最新发布房屋
             /// </summary>
             public static string HOUSE_HOME_TRANSFER_LATEST = "FXCACHE_HOUSE_HOME_TRANSFER_LATEST";
+
+            /// <summary>
+            /// 首页最新发布的置顶
+            /// </summary>
+            public static string HOUSE_HOME_TOP_SHOW_LATEST = "FXCACHE_HOUSE _HOME_TOP_SHOW_LATEST";
         }
 
         public static class HouseExtendKey
         {
             public static DateTime HOUSE_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+
+            public static DateTime HOUSE_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
         }
     }
 }
