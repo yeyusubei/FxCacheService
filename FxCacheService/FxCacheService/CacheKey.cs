@@ -76,6 +76,17 @@ namespace FxCacheService
             /// 首页最新发布的置顶
             /// </summary>
             public static string GOODS_HOME_TOP_SHOW_LATEST = "FXCACHE_GOODS_HOME_TOP_SHOW_LATEST";
+
+
+
+
+
+
+            public static string GOODSLIST_Electronics = "FXCACHE_GOODSLIST_Electronics";
+            public static string GOODSLIST_HomeSupplies = "FXCACHE_GOODSLIST_HomeSupplies";
+            public static string GOODSLIST_Fashion = "FXCACHE_GOODSLIST_Fashion";
+            public static string GOODSLIST_CultureLife = "FXCACHE_GOODSLIST_CultureLife";
+            public static string GOODSLIST_Other = "FXCACHE_GOODSLIST_Other";
         }
 
         public static class GoodsExtendKey
@@ -97,6 +108,10 @@ namespace FxCacheService
             /// 首页最新发布的置顶
             /// </summary>
             public static string CAR_HOME_TOP_SHOW_LATEST = "FXCACHE_CAR_HOME_TOP_SHOW_LATEST";
+
+
+
+            public static string CARLIST_SecondHandCar = "FXCACHE_CARLIST_SecondHandCar";
         }
 
         public static class CarExtendKey
@@ -117,6 +132,12 @@ namespace FxCacheService
             /// 首页最新发布的置顶
             /// </summary>
             public static string HOUSE_HOME_TOP_SHOW_LATEST = "FXCACHE_HOUSE _HOME_TOP_SHOW_LATEST";
+
+
+
+
+            public static string HOUSELIST_CommercialProperties = "FXCACHE_HOUSELIST_CommercialProperties";
+            public static string HOUSELIST_Properties = "FXCACHE_HOUSELIST_Properties";
         }
 
         public static class HouseExtendKey
