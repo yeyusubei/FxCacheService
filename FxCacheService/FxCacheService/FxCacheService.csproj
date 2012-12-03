@@ -52,9 +52,16 @@
     <Compile Include="BaseCache.cs" />
     <Compile Include="CacheKey.cs" />
     <Compile Include="FxCar\CarCache.cs" />
+    <Compile Include="FxCar\CarBuySearch.cs" />
+    <Compile Include="FxCar\CarTransferSearch.cs" />
+    <Compile Include="FxGoods\GoodsBuySearch.cs" />
     <Compile Include="FxGoods\GoodsCache.cs" />
+    <Compile Include="FxGoods\GoodsTransferSearch.cs" />
+    <Compile Include="FxHouse\HouseBuySearch.cs" />
     <Compile Include="FxHouse\HouseCache.cs" />
+    <Compile Include="FxHouse\HouseTransferSearch.cs" />
     <Compile Include="FxSite\GlobalCache.cs" />
+    <Compile Include="FxSite\SiteCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

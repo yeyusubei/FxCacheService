@@ -1,0 +1,8 @@
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Debug\FxCacheService.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Debug\FxCacheService.pdb
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Debug\Fx.Infrastructure.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Debug\FxCacheService.csprojResolveAssemblyReference.cache
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Debug\FxCacheService.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Debug\FxCacheService.pdb
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Debug\Fx.Domain.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Debug\Fx.Entity.dll

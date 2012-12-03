@@ -1,0 +1,11 @@
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Debug\CacheTest.csprojResolveAssemblyReference.cache
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\CacheTest.dll.config
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\CacheTest.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\CacheTest.pdb
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\Fx.Domain.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\Fx.Entity.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\Fx.Infrastructure.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\SimpleInjector.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Debug\SimpleInjector.xml
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Debug\CacheTest.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Debug\CacheTest.pdb

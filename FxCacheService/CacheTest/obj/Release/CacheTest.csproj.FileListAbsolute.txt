@@ -1,0 +1,11 @@
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\CacheTest.dll.config
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\CacheTest.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\CacheTest.pdb
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\Fx.Domain.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\Fx.Entity.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\Fx.Infrastructure.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\SimpleInjector.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\bin\Release\SimpleInjector.xml
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Release\CacheTest.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Release\CacheTest.pdb
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\CacheTest\obj\Release\CacheTest.csprojResolveAssemblyReference.cache
