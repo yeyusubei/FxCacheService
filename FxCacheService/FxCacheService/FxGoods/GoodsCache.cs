@@ -152,7 +152,7 @@ namespace FxCacheService.FxGoods
             int count = 100;
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods) == null)
             {
-                var list = goodsBuySearchService.SearchWhenChangeGoods(0, count);
+                var list = goodsBuySearchService.SearchByKey("", 0, 0, 0, count);
                 cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods, list, 30, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods) as List<GoodsBuyInfo>;
@@ -162,7 +162,7 @@ namespace FxCacheService.FxGoods
             int count = 100;
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice) == null)
             {
-                var list = goodsBuySearchService.SearchWhenPrice(0, count);
+                var list = goodsBuySearchService.SearchByKey("", 0, 0, 0, count);
                 cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice, list, 30, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice) as List<GoodsBuyInfo>;

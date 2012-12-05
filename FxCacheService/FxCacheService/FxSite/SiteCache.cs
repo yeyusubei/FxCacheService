@@ -19,7 +19,7 @@ namespace FxCacheService.FxSite
         {
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) == null)
             {
-                var area = ajax.GetAreas();
+                var area = ajax.GetAreaDomain();
                 cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREA, area, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) as List<Area>;

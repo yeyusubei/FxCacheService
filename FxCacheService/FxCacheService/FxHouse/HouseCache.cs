@@ -31,6 +31,8 @@ namespace FxCacheService.FxHouse
             this.houseListService = houseListService;
             this.houseBuySearchService = houseBuySearchService;
             this.houseTransferSearchService = houseTransferSearchService;
+            this.topShow = topShow;
+
         }
 
         public List<HouseTransferInfo> GetHomeLatest()
