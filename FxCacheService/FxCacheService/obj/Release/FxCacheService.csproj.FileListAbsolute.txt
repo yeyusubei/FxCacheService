@@ -3,6 +3,6 @@ E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheServic
 E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Release\Fx.Domain.dll
 E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Release\Fx.Entity.dll
 E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\bin\Release\Fx.Infrastructure.dll
+E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Release\FxCacheService.csprojResolveAssemblyReference.cache
 E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Release\FxCacheService.dll
 E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Release\FxCacheService.pdb
-E:\Program Files\GitHubWorkspace\net\FxCacheService\FxCacheService\FxCacheService\FxCacheService\obj\Release\FxCacheService.csprojResolveAssemblyReference.cache

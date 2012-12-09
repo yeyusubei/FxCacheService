@@ -28,7 +28,7 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT) == null)
             {
                 int count = accountService.GetUserCount();
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, 3600 , System.Web.Caching.CacheItemPriority.Normal);
             }
             return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT));
         }
@@ -53,7 +53,7 @@ namespace FxCacheService.FxSite
                 CacheKey.GlabalExtendKey.GLOBAL_USER_COUNT_Mark = DateTime.Today.ToString("yyMMdd");
                 count = 1;
             }
-            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.NotRemovable);
+            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count,  3600 , System.Web.Caching.CacheItemPriority.NotRemovable);
         }
 
         /// <summary>
