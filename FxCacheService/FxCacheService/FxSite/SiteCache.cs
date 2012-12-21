@@ -32,7 +32,7 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) == null)
             {
                 var area = ajax.GetAreaDomain();
-                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREA, area, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREA, area, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) as List<Area>;
         }
@@ -43,10 +43,8 @@ namespace FxCacheService.FxSite
         {
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_GOODSCHANNEL) == null)
             {
-
                 var goodsChannel = channel.GetAllChannels().Where(r => r.ChannelId == 1).FirstOrDefault();
-
-                cacheService.Insert(CacheKey.SiteCacheKey.SITE_GOODSCHANNEL, goodsChannel.ChannelLists, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_GOODSCHANNEL, goodsChannel.ChannelLists, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_GOODSCHANNEL) as List<ChannelList>;
 
@@ -59,10 +57,17 @@ namespace FxCacheService.FxSite
 
                 var houseChannel1 = house.GetChannelTransferDetail("HouseTransfer", "CommercialProperties");
                 var houseChannel2 = house.GetChannelTransferDetail("HouseTransfer", "Properties");
-                houseChannel2.ForEach(r => houseChannel1.Add(r));
+                if (houseChannel1 != null && houseChannel2 != null)
+                {
+                    houseChannel2.ForEach(r => houseChannel1.Add(r));
+                }
                 if (houseChannel1 != null)
                 {
-                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_HOUSE_TRANSFER_CHANNELLIST, houseChannel1, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_HOUSE_TRANSFER_CHANNELLIST, houseChannel1, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                }
+                else
+                {
+                    return new List<ChannelListDetail> ();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_HOUSE_TRANSFER_CHANNELLIST) as List<ChannelListDetail>;
@@ -75,9 +80,17 @@ namespace FxCacheService.FxSite
             {
                 var houseChannel1 = house.GetChannelBuyDetail("HouseBuy", "CommercialProperties");
                 var houseChannel2 = house.GetChannelBuyDetail("HouseBuy", "Properties");
-                houseChannel2.ForEach(r => houseChannel1.Add(r));
+                if (houseChannel1 != null && houseChannel2 != null)
                 {
-                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_HOUSE_BUY_CHANNELLIST, houseChannel1, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                    houseChannel2.ForEach(r => houseChannel1.Add(r));
+                }
+                if (houseChannel1 != null)
+                {
+                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_HOUSE_BUY_CHANNELLIST, houseChannel1, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                }
+                else
+                {
+                    return new List<ChannelListDetail> ();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_HOUSE_BUY_CHANNELLIST) as List<ChannelListDetail>;
@@ -89,8 +102,13 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_TRANSFER_CHANNELLIST) == null)
             {
                 var carChannel = car.GetChannelBuyDetail("CarBuy", "SecondHandCar");
+                if (carChannel != null)
                 {
-                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_CAR_TRANSFER_CHANNELLIST, carChannel, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_CAR_TRANSFER_CHANNELLIST, carChannel, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                }
+                else
+                {
+                    return new List<ChannelListDetail> ();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_TRANSFER_CHANNELLIST) as List<ChannelListDetail>;
@@ -101,8 +119,13 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_BUY_CHANNELLIST) == null)
             {
                 var carChannel = car.GetChannelTransferDetail("CarTransfer", "SecondHandCar");
+                if (carChannel != null)
                 {
-                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_CAR_BUY_CHANNELLIST, carChannel, 365 * 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                    cacheService.Insert(CacheKey.SiteCacheKey.SITE_CAR_BUY_CHANNELLIST, carChannel, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                }
+                else
+                {
+                    return new List<ChannelListDetail> ();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_BUY_CHANNELLIST) as List<ChannelListDetail>;

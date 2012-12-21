@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Fx.Domain.Account.IService;
 using Fx.Domain.FxAggregate.IService;
+using Fx.Domain.FxCar.IService;
+using Fx.Domain.FxGoods.IService;
+using Fx.Domain.FxHouse.IService;
 using Fx.Infrastructure.Caching;
 
 namespace FxCacheService.FxSite
@@ -12,11 +15,20 @@ namespace FxCacheService.FxSite
     {
         protected IAccountService accountService;
         protected IDbAll dbAllService;
+        IGlobalCacheCar carGlobalCache;
+        IGlobalCacheGoods goodsGlobalCache;
+        IGolbalCacheHouse houseGlobalCache;
         public GlobalCache(IAccountService accountService,
-            IDbAll dbAllService)
+            IDbAll dbAllService,
+            IGlobalCacheCar carGlobalCache,
+            IGlobalCacheGoods goodsGlobalCache,
+            IGolbalCacheHouse houseGlobalCache)
         {
             this.accountService = accountService;
             this.dbAllService = dbAllService;
+            this.carGlobalCache = carGlobalCache;
+            this.goodsGlobalCache = goodsGlobalCache;
+            this.houseGlobalCache = houseGlobalCache;
         }
 
         /// <summary>
@@ -28,7 +40,7 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT) == null)
             {
                 int count = accountService.GetUserCount();
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, 3600 , System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT));
         }
@@ -53,7 +65,7 @@ namespace FxCacheService.FxSite
                 CacheKey.GlabalExtendKey.GLOBAL_USER_COUNT_Mark = DateTime.Today.ToString("yyMMdd");
                 count = 1;
             }
-            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count,  3600 , System.Web.Caching.CacheItemPriority.NotRemovable);
+            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_COUNT, count, cacheOneHour, System.Web.Caching.CacheItemPriority.NotRemovable);
         }
 
         /// <summary>
@@ -65,9 +77,9 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD) == null)
             {
                 int count = 0;
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD, count, cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
             }
-            return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD)) + 1;
+            return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD));
         }
 
         /// <summary>
@@ -90,7 +102,7 @@ namespace FxCacheService.FxSite
                 count = 1;
                 CacheKey.GlabalExtendKey.GLOBAL_USER_TODAY_ADD_Mark = DateTime.Today.ToString("yyMMdd");
             }
-            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_USER_TODAY_ADD, count, cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
         }
 
 
@@ -106,8 +118,8 @@ namespace FxCacheService.FxSite
         {
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT) == null)
             {
-                int count = accountService.GetUserCount();
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+                int count = carGlobalCache.InfoCount() + goodsGlobalCache.InfoCount() + houseGlobalCache.InfoCount();
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT, count, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
             return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT));
         }
@@ -122,7 +134,7 @@ namespace FxCacheService.FxSite
                StringComparison.CurrentCultureIgnoreCase))
             {
                 count = InfoPublishAllCount() + 1;
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT, count, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
                 clearEvent();
             }
             else
@@ -142,7 +154,7 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT) == null)
             {
                 count = 0;
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT, count, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
             return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT)) + 1;
         }
@@ -167,7 +179,7 @@ namespace FxCacheService.FxSite
                 count = 1;
                 CacheKey.GlabalExtendKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT_Mark = DateTime.Today.ToString("yyMMdd");
             }
-            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_TODAY_COUNT, count, cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
         }
 
 
@@ -185,7 +197,7 @@ namespace FxCacheService.FxSite
             if (cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT) == null)
             {
                 int count = 0;
-                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT, count, 24 * 3600, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT, count, 24 * cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return Convert.ToInt32(cacheService.Get(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT)) + 1;
         }
@@ -211,7 +223,7 @@ namespace FxCacheService.FxSite
                 count = 1;
                 CacheKey.GlabalExtendKey.GLOBAL_INFO_END_COUNT_Mark = DateTime.Today.ToString("yyMMdd");
             }
-            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT, count, 24 * 3600 * 365, System.Web.Caching.CacheItemPriority.Normal);
+            cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_END_COUNT, count, cacheOneHour, System.Web.Caching.CacheItemPriority.Normal);
         }
 
 

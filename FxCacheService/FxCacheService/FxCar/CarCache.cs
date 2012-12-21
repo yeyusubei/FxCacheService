@@ -40,13 +40,11 @@ namespace FxCacheService.FxCar
         public List<CarTransferInfo> GetHomeLatest()
         {
             int number = 10;
-            if (cacheService.Get(CacheKey.CarKey.CAR_HOME_TRANSFER_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.CarExtendKey.CAR_HOME_TRANSFER_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.CarExtendKey.CAR_HOME_TRANSFER_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.CarKey.CAR_HOME_TRANSFER_LATEST) == null)
             {
                 var list = homeSearch.SearchLatestForHome(number);
-                cacheService.Insert(CacheKey.CarKey.CAR_HOME_TRANSFER_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.CarExtendKey.CAR_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+                CheckCarList(list);
+                cacheService.Insert(CacheKey.CarKey.CAR_HOME_TRANSFER_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_HOME_TRANSFER_LATEST) as List<CarTransferInfo>;
         }
@@ -54,13 +52,11 @@ namespace FxCacheService.FxCar
 
         public List<CarTransferInfo> GetHomeTopShow()
         {
-            if (cacheService.Get(CacheKey.CarKey.CAR_HOME_TOP_SHOW_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.CarExtendKey.CAR_HOME_TOP_SHOW_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.CarExtendKey.CAR_HOME_TOP_SHOW_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.CarKey.CAR_HOME_TOP_SHOW_LATEST) == null)
             {
                 var list = homeTopShow.GetHomeCarTopShow();
-                cacheService.Insert(CacheKey.CarKey.CAR_HOME_TOP_SHOW_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.CarExtendKey.CAR_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
+                CheckCarList(list);
+                cacheService.Insert(CacheKey.CarKey.CAR_HOME_TOP_SHOW_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_HOME_TOP_SHOW_LATEST) as List<CarTransferInfo>;
         }
@@ -70,7 +66,7 @@ namespace FxCacheService.FxCar
             if (cacheService.Get(CacheKey.CarKey.CARLIST_SecondHandCar) == null)
             {
                 var list = carListService.GetSecondHandCar();
-                cacheService.Insert(CacheKey.CarKey.CARLIST_SecondHandCar, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.CarKey.CARLIST_SecondHandCar, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CARLIST_SecondHandCar) as List<CarTransferInfo>;
         }
@@ -81,7 +77,7 @@ namespace FxCacheService.FxCar
             if (cacheService.Get(CacheKey.CarKey.CAR_TRANSFER_TOPSHOW) == null)
             {
                 var list = topShow.GetCarTransferTopShow();
-                cacheService.Insert(CacheKey.CarKey.CAR_TRANSFER_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.CarKey.CAR_TRANSFER_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_TRANSFER_TOPSHOW) as List<CarTransferInfo>;
         }
@@ -92,19 +88,10 @@ namespace FxCacheService.FxCar
             if (cacheService.Get(CacheKey.CarKey.CAR_BUY_TOPSHOW) == null)
             {
                 var list = topShow.GetCarBuyTopShow();
-                cacheService.Insert(CacheKey.CarKey.CAR_BUY_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.CarKey.CAR_BUY_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_BUY_TOPSHOW) as List<CarBuyInfo>;
         }
-
-        /// <summary>
-        /// 根本做不到！！
-        /// </summary>
-        /// <returns></returns>
-        //public List<CarBuyInfo> GetMainCarBuySearchByKey()
-        //{
-
-        //}
 
 
         public List<CarBuyInfo> GetMainCarBuyALL()
@@ -113,7 +100,7 @@ namespace FxCacheService.FxCar
             if (cacheService.Get(CacheKey.CarKey.CAR_BUY_GetMainCARALL) == null)
             {
                 var list = carBuySearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.CarKey.CAR_BUY_GetMainCARALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.CarKey.CAR_BUY_GetMainCARALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_BUY_GetMainCARALL) as List<CarBuyInfo>;
         }
@@ -125,9 +112,20 @@ namespace FxCacheService.FxCar
             if (cacheService.Get(CacheKey.CarKey.CAR_TRANSFER_GetMainCARALL) == null)
             {
                 var list = carTransferSearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.CarKey.CAR_TRANSFER_GetMainCARALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.CarKey.CAR_TRANSFER_GetMainCARALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.CarKey.CAR_TRANSFER_GetMainCARALL) as List<CarTransferInfo>;
+        }
+
+        private void CheckCarList(List<CarTransferInfo> infos)
+        {
+            if (infos != null)
+            {
+                foreach (var item in infos)
+                {
+                    item.PublishTitle = Fx.Infrastructure.Data.Cut.CutStr(item.PublishTitle, 8);
+                }
+            }
         }
     }
 }

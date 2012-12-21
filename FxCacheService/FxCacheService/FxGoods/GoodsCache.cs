@@ -37,26 +37,22 @@ namespace FxCacheService.FxGoods
         public List<GoodsTransferInfo> GetHomeLatest()
         {
             int number = 10;
-            if (cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TRANSFER_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.GoodsExtendKey.GOODS_HOME_TRANSFER_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.GoodsExtendKey.GOODS_HOME_TRANSFER_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TRANSFER_LATEST) == null)
             {
                 var list = homeSearch.SearchLatestForHome(number);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_HOME_TRANSFER_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.GoodsExtendKey.GOODS_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+                CheckGoodsList(list);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_HOME_TRANSFER_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);              
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TRANSFER_LATEST) as List<GoodsTransferInfo>;
         }
 
         public List<GoodsTransferInfo> GetHomeTopShow()
         {
-            if (cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TOP_SHOW_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.GoodsExtendKey.GOODS_HOME_TOP_SHOW_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.GoodsExtendKey.GOODS_HOME_TOP_SHOW_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TOP_SHOW_LATEST) == null)
             {
                 var list = homeTopShow.GetHomeGoodsTopShow();
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_HOME_TOP_SHOW_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.GoodsExtendKey.GOODS_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
+                CheckGoodsList(list);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_HOME_TOP_SHOW_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_HOME_TOP_SHOW_LATEST) as List<GoodsTransferInfo>;
         }
@@ -67,7 +63,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Electronics) == null)
             {
                 var list = goodsListService.Electronics();
-                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Electronics, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Electronics, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Electronics) as List<GoodsTransferInfo>;
         }
@@ -77,7 +73,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODSLIST_HomeSupplies) == null)
             {
                 var list = goodsListService.HomeSupplies();
-                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_HomeSupplies, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_HomeSupplies, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODSLIST_HomeSupplies) as List<GoodsTransferInfo>;
         }
@@ -87,7 +83,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Fashion) == null)
             {
                 var list = goodsListService.Fashion();
-                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Fashion, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Fashion, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Fashion) as List<GoodsTransferInfo>;
         }
@@ -97,7 +93,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODSLIST_CultureLife) == null)
             {
                 var list = goodsListService.CultureLife();
-                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_CultureLife, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_CultureLife, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODSLIST_CultureLife) as List<GoodsTransferInfo>;
         }
@@ -107,7 +103,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Other) == null)
             {
                 var list = goodsListService.Other();
-                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Other, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODSLIST_Other, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODSLIST_Other) as List<GoodsTransferInfo>;
         }
@@ -119,7 +115,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_TOPSHOW) == null)
             {
                 var list = topShow.GetGoodsTransferTopShow();
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_TOPSHOW) as List<GoodsTransferInfo>;
         }
@@ -129,7 +125,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_TOPSHOW) == null)
             {
                 var list = topShow.GetGoodsBuyTopShow();
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_TOPSHOW) as List<GoodsBuyInfo>;
         }
@@ -142,7 +138,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsALL) == null)
             {
                 var list = goodsBuySearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsALL) as List<GoodsBuyInfo>;
         }
@@ -153,7 +149,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods) == null)
             {
                 var list = goodsBuySearchService.SearchByKey("", 0, 0, 0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyChangeGoods) as List<GoodsBuyInfo>;
         }
@@ -163,7 +159,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice) == null)
             {
                 var list = goodsBuySearchService.SearchByKey("", 0, 0, 0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_BUY_GetMainGoodsOnlyPrice) as List<GoodsBuyInfo>;
         }
@@ -174,7 +170,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsALL) == null)
             {
                 var list = goodsTransferSearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsALL) as List<GoodsTransferInfo>;
         }
@@ -185,7 +181,7 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyChangeGoods) == null)
             {
                 var list = goodsTransferSearchService.SearchWhenChangeGoods(0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyChangeGoods, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyChangeGoods, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyChangeGoods) as List<GoodsTransferInfo>;
         }
@@ -196,9 +192,21 @@ namespace FxCacheService.FxGoods
             if (cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyPrice) == null)
             {
                 var list = goodsTransferSearchService.SearchWhenPrice(0, count);
-                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyPrice, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyPrice, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.GoodsKey.GOODS_TRANSFER_GetMainGoodsOnlyPrice) as List<GoodsTransferInfo>;
+        }
+
+
+        private void CheckGoodsList(List<GoodsTransferInfo> infos)
+        {
+            if (infos != null)
+            {
+                foreach (var item in infos)
+                {
+                    item.PublishTitle = Fx.Infrastructure.Data.Cut.CutStr(item.PublishTitle, 8);
+                }
+            }
         }
     }
 }

@@ -174,14 +174,6 @@ namespace FxCacheService
 
         }
 
-        public static class GoodsExtendKey
-        {
-            public static DateTime GOODS_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
-
-            public static DateTime GOODS_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
-        }
-
-
         public static class CarKey
         {
             /// <summary>
@@ -240,19 +232,6 @@ namespace FxCacheService
 
         }
 
-        public static class CarExtendKey
-        {
-            public static DateTime CAR_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
-
-            public static DateTime CAR_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
-        }
-
-
-
-
-
-
-
         public static class HouseKey
         {
             /// <summary>
@@ -296,13 +275,6 @@ namespace FxCacheService
             public static string GetMainHouseTransferFlat = "FXCACHE_GetMainHouseTransferFlat";
             public static string GetMainHouseTransferStudentAparment = "FXCACHE_GetMainHouseTransferStudentAparment";
 
-        }
-
-        public static class HouseExtendKey
-        {
-            public static DateTime HOUSE_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
-
-            public static DateTime HOUSE_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
         }
     }
 }

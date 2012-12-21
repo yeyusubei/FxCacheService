@@ -38,26 +38,22 @@ namespace FxCacheService.FxHouse
         public List<HouseTransferInfo> GetHomeLatest()
         {
             int number = 10;
-            if (cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TRANSFER_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.HouseExtendKey.HOUSE_HOME_TRANSFER_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.HouseExtendKey.HOUSE_HOME_TRANSFER_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TRANSFER_LATEST) == null)
             {
                 var list = homeSearch.SearchLatestForHome(number);
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_HOME_TRANSFER_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.HouseExtendKey.HOUSE_HOME_TRANSFER_LATEST_Mark = DateTime.Now;
+                CheckHouseList(list);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_HOME_TRANSFER_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TRANSFER_LATEST) as List<HouseTransferInfo>;
         }
 
         public List<HouseTransferInfo> GetHomeTopShow()
         {
-            if (cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TOP_SHOW_LATEST) == null ||
-                DateTime.Now.Subtract(CacheKey.HouseExtendKey.HOUSE_HOME_TOP_SHOW_LATEST_Mark).Hours > 0 ||
-                DateTime.Now.Subtract(CacheKey.HouseExtendKey.HOUSE_HOME_TOP_SHOW_LATEST_Mark).Minutes > 30)
+            if (cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TOP_SHOW_LATEST) == null)
             {
                 var list = homeTopShow.GetHomeHouseTopShow();
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_HOME_TOP_SHOW_LATEST, list, 30, System.Web.Caching.CacheItemPriority.Normal);
-                CacheKey.HouseExtendKey.HOUSE_HOME_TOP_SHOW_LATEST_Mark = DateTime.Now;
+                CheckHouseList(list);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_HOME_TOP_SHOW_LATEST, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_HOME_TOP_SHOW_LATEST) as List<HouseTransferInfo>;
         }
@@ -67,7 +63,7 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSELIST_CommercialProperties) == null)
             {
                 var list = houseListService.CommercialProperties();
-                cacheService.Insert(CacheKey.HouseKey.HOUSELIST_CommercialProperties, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSELIST_CommercialProperties, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSELIST_CommercialProperties) as List<HouseTransferInfo>;
         }
@@ -78,7 +74,7 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSELIST_Properties) == null)
             {
                 var list = houseListService.Properties();
-                cacheService.Insert(CacheKey.HouseKey.HOUSELIST_Properties, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSELIST_Properties, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSELIST_Properties) as List<HouseTransferInfo>;
         }
@@ -89,7 +85,7 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSE_TRANSFER_TOPSHOW) == null)
             {
                 var list = topShow.GetHouseTransferTopShow();
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_TRANSFER_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_TRANSFER_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_TRANSFER_TOPSHOW) as List<HouseTransferInfo>;
         }
@@ -99,7 +95,7 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSE_BUY_TOPSHOW) == null)
             {
                 var list = topShow.GetHouseBuyTopShow();
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_BUY_TOPSHOW, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_BUY_TOPSHOW, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_BUY_TOPSHOW) as List<HouseBuyInfo>;
         }
@@ -111,7 +107,7 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSE_BUY_GetMainHouseALL) == null)
             {
                 var list = houseBuySearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_BUY_GetMainHouseALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_BUY_GetMainHouseALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_BUY_GetMainHouseALL) as List<HouseBuyInfo>;
         }
@@ -123,9 +119,20 @@ namespace FxCacheService.FxHouse
             if (cacheService.Get(CacheKey.HouseKey.HOUSE_TRANSFER_GetMainHouseALL) == null)
             {
                 var list = houseTransferSearchService.SearchByKey("", 0, count);
-                cacheService.Insert(CacheKey.HouseKey.HOUSE_TRANSFER_GetMainHouseALL, list, 30, System.Web.Caching.CacheItemPriority.Normal);
+                cacheService.Insert(CacheKey.HouseKey.HOUSE_TRANSFER_GetMainHouseALL, list, cacheHalfHour, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.HouseKey.HOUSE_TRANSFER_GetMainHouseALL) as List<HouseTransferInfo>;
+        }
+
+        private void CheckHouseList(List<HouseTransferInfo> infos)
+        {
+            if (infos != null)
+            {
+                foreach (var item in infos)
+                {
+                    item.PublishTitle = Fx.Infrastructure.Data.Cut.CutStr(item.PublishTitle, 8);
+                }
+            }
         }
     }
 }
