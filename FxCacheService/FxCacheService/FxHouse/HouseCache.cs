@@ -130,7 +130,7 @@ namespace FxCacheService.FxHouse
             {
                 foreach (var item in infos)
                 {
-                    item.PublishTitle = Fx.Infrastructure.Data.Cut.CutStr(item.PublishTitle, 8);
+                    item.PublishTitle = Fx.Infrastructure.Data.Cut.CutStr(item.PublishTitle, 16);
                 }
             }
         }
