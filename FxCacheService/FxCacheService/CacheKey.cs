@@ -13,7 +13,7 @@ namespace FxCacheService
         public static class SiteCacheKey
         {
             public static string SITE_AREA = "FXCACHE_SITE_AREA";
-            public static string SITE_AREAHTML = "FXCACHE_SITE_AREAHTML";
+            public static string SITE_AREALISTITEMS = "FXCACHE_SITE_AREALISTITEMS";
             public static string SITE_CITY = "FXCACHE_SITE_CITY";
             public static string SITE_GOODSCHANNEL = "FXCACHE_SITE_GOODSCHANNEL";
 

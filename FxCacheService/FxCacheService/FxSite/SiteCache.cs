@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 using Fx.Domain.FxSite.IService;
 using Fx.Entity.FxSite;
 
@@ -48,23 +49,24 @@ namespace FxCacheService.FxSite
         }
 
 
-     
+
 
         /// <summary>
         /// 提供区域的HTML数据 用于转让/求购发布信息页的数据绑定
         /// </summary>
         /// <returns></returns>
-        public string GetAreaHtml()
+        public List<SelectListItem> GetAreaListItems()
         {
-            if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREAHTML) == null)
+            if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREALISTITEMS) == null)
             {
-                string show = "<option value=\"0\">--请选择地区--</option>";
+                var items = new List<SelectListItem>();
+                items.Add(new SelectListItem() { Value = "0", Text = "--请选择地区--", Selected = true });
                 var list = GetArea();
-                var json = from p in list
-                           select string.Format("<option value=\"{0}\">{1}</option>", p.AreaId, p.AreaName);
-                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREAHTML, show + string.Join("", json), cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                list.ForEach(r => items.Add(new SelectListItem() { Value = r.AreaId.ToString(), Text = r.AreaName }));
+
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREALISTITEMS, items, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
-            return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREAHTML) as string;
+            return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREALISTITEMS) as List<SelectListItem>;
         }
 
 
@@ -99,7 +101,7 @@ namespace FxCacheService.FxSite
                 }
                 else
                 {
-                    return new List<ChannelListDetail> ();
+                    return new List<ChannelListDetail>();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_HOUSE_TRANSFER_CHANNELLIST) as List<ChannelListDetail>;
@@ -122,7 +124,7 @@ namespace FxCacheService.FxSite
                 }
                 else
                 {
-                    return new List<ChannelListDetail> ();
+                    return new List<ChannelListDetail>();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_HOUSE_BUY_CHANNELLIST) as List<ChannelListDetail>;
@@ -140,7 +142,7 @@ namespace FxCacheService.FxSite
                 }
                 else
                 {
-                    return new List<ChannelListDetail> ();
+                    return new List<ChannelListDetail>();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_TRANSFER_CHANNELLIST) as List<ChannelListDetail>;
@@ -157,7 +159,7 @@ namespace FxCacheService.FxSite
                 }
                 else
                 {
-                    return new List<ChannelListDetail> ();
+                    return new List<ChannelListDetail>();
                 }
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_CAR_BUY_CHANNELLIST) as List<ChannelListDetail>;
