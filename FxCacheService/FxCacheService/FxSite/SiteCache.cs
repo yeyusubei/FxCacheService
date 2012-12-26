@@ -9,18 +9,18 @@ namespace FxCacheService.FxSite
 {
     public class SiteCache : BaseCache
     {
-        protected IPageAjax ajax;
+        protected ISite site;
         protected IChannelService channel;
         protected ICar car;
         //protected IGoods goods;
         protected IHouse house;
-        public SiteCache(IPageAjax ajax,
+        public SiteCache(ISite site,
             IChannelService channel,
             ICar car,
             IGoods goods,
             IHouse house)
         {
-            this.ajax = ajax;
+            this.site = site;
             this.channel = channel;
             this.car = car;
             //this.goods = goods;//因goods 采用二级频道 所以使用IChannelService
@@ -31,11 +31,43 @@ namespace FxCacheService.FxSite
         {
             if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) == null)
             {
-                var area = ajax.GetAreaDomain();
-                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREA, area, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+                var areas = site.GetAreaDomain();
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREA, areas, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
             }
             return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREA) as List<Area>;
         }
+
+        public List<City> GetCity()
+        {
+            if (cacheService.Get(CacheKey.SiteCacheKey.SITE_CITY) == null)
+            {
+                var cities = site.GetCities();
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_CITY, cities, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+            }
+            return cacheService.Get(CacheKey.SiteCacheKey.SITE_CITY) as List<City>;
+        }
+
+
+     
+
+        /// <summary>
+        /// 提供区域的HTML数据 用于转让/求购发布信息页的数据绑定
+        /// </summary>
+        /// <returns></returns>
+        public string GetAreaHtml()
+        {
+            if (cacheService.Get(CacheKey.SiteCacheKey.SITE_AREAHTML) == null)
+            {
+                string show = "<option value=\"0\">--请选择地区--</option>";
+                var list = GetArea();
+                var json = from p in list
+                           select string.Format("<option value=\"{0}\">{1}</option>", p.AreaId, p.AreaName);
+                cacheService.Insert(CacheKey.SiteCacheKey.SITE_AREAHTML, show + string.Join("", json), cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
+            }
+            return cacheService.Get(CacheKey.SiteCacheKey.SITE_AREAHTML) as string;
+        }
+
+
 
 
 

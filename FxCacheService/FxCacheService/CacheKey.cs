@@ -13,6 +13,8 @@ namespace FxCacheService
         public static class SiteCacheKey
         {
             public static string SITE_AREA = "FXCACHE_SITE_AREA";
+            public static string SITE_AREAHTML = "FXCACHE_SITE_AREAHTML";
+            public static string SITE_CITY = "FXCACHE_SITE_CITY";
             public static string SITE_GOODSCHANNEL = "FXCACHE_SITE_GOODSCHANNEL";
 
             public static string SITE_CAR_TRANSFER_CHANNELLIST = "FXCACHE_SITE_CAR_TRANSFER_CHANNELLIST";
@@ -20,6 +22,8 @@ namespace FxCacheService
 
             public static string SITE_HOUSE_TRANSFER_CHANNELLIST = "FXCACHE_SITE_HOUSE_TRANSFER_CHANNELLIST";
             public static string SITE_HOUSE_BUY_CHANNELLIST = "FXCACHE_SITE_HOUSE_BUY_CHANNELLIST";
+
+            
         }
 
 

@@ -35,7 +35,7 @@ namespace FxInformationJob.Tests
         {
             container.Register<Fx.Domain.Account.IService.IAccountService, Fx.Domain.Account.UserAccountService>();
             container.Register<Fx.Domain.FxSite.IService.IChannelService, Fx.Domain.FxSite.ChannelService>();
-            container.Register<Fx.Domain.FxSite.IService.IPageAjax, Fx.Domain.FxSite.PublishAjaxService>();
+            container.Register<Fx.Domain.FxSite.IService.ISite, Fx.Domain.FxSite.SiteService>();
 
             container.Register<Fx.Domain.FxSite.IService.IGoods, Fx.Domain.FxSite.GoodsService>();
             container.Register<Fx.Domain.FxSite.IService.ICar, Fx.Domain.FxSite.CarService>();
