@@ -135,7 +135,10 @@ namespace FxCacheService.FxSite
             {
                 count = InfoPublishAllCount() + 1;
                 cacheService.Insert(CacheKey.GlobalCacheKey.GLOBAL_INFO_PUBLISH_ALL_COUNT, count, cacheOneDay, System.Web.Caching.CacheItemPriority.Normal);
-                clearEvent();
+                if (clearEvent != null)
+                {
+                    clearEvent();
+                }
             }
             else
             {
